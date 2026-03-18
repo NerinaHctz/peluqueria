@@ -1,0 +1,27 @@
+footer {
+    background-color: #fff;
+    text-align: center;
+    color: #333;
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    border-top: 1px solid #acacac;
+}
+
+footer h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+footer .nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+footer .nav-links img {
+    width: 19px;
+    height: 19px;
+    object-fit: cover;
+}

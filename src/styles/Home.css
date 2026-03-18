@@ -1,0 +1,56 @@
+.container.home-page {
+    padding-bottom: 65px;
+}
+
+h1.title {
+    padding-top: 120px;
+}
+
+.subtitle {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.info-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 40px;
+    align-items: center;
+}
+
+.info-section h2 {
+    margin-bottom: 16px;
+    align-self: start;
+    width: 100%;
+    border-bottom: 1px solid #acacac;
+    padding-bottom: 6px;
+}
+
+.info-section .info-container {
+    display: flex;
+    gap: 30px;
+}
+
+.info-section .info-container img {
+    width: 100%;
+    max-width: 257px;
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
+}
+
+.info-section.contraria {
+    border-radius: 0 0 8px 0;
+    padding: 0 0 0 20px;
+}
+
+.info-section.belleza h2 {
+    text-align: end;
+}
+
+.info-section.contraria .info-container img {
+    border-radius: 0 8px 8px 0;
+}
+
+.info-section .info-container img.img-salon {
+    max-width: 443px;
+}

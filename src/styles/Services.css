@@ -1,0 +1,70 @@
+.container.servicios-page {
+    margin-bottom: 80px;
+}
+
+.servicios-page .cortes-section {
+    padding-top: 120px;
+}
+
+.servicios-page .color-section .info-section,
+.servicios-page .cortes-section .info-section {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+}
+
+.servicios-page .color-section .info-section img {
+    width: 100%;
+    max-width: 330px;
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
+}
+
+.servicios-page .cortes-section .info-section img.img-corte {
+    border-radius: 8px 0 0 8px;
+    object-fit: cover;
+    width: 100%;
+    height: 313px;
+    object-position: 50% -18px;
+    max-width: 330px;
+}
+
+.servicios-page .color-section .info-section img.img-mechas {
+    height: 313px;
+    object-position: 50% -27px;
+    max-width: 330px;
+}
+
+.servicios-page .color-section .info-section img.img-flequillo {
+    height: 313px;
+    object-position: 50% -10px;
+    max-width: 330px;
+}
+
+table {
+    width: 100%;
+}
+
+table th {
+    text-align: start;
+    height: 40px;
+    border-bottom: 1px solid #acacac;
+}
+
+table th:last-child {
+    text-align: end;
+}
+
+table tr td {
+    height: 40px;
+    border-bottom: 1px solid #e4d9d9;
+}
+
+table tr td:last-child {
+    text-align: end;
+}
+
+table tr td .legal {
+    margin: 0;
+    font-size: 12px;
+}
