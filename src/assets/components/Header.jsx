@@ -16,6 +16,7 @@ export default function Header() {
             <div className="nav-links">
                 <NavLink to="/">Inicio</NavLink>
                 <NavLink to="/Services">Servicios</NavLink>
+                <NavLink to="/Booking">Reservar Cita</NavLink>
                 <NavLink to="/Gallery">Galería</NavLink>
                 <NavLink to="/Contact">Contacto</NavLink>
             </div>

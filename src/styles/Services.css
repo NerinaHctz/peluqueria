@@ -68,3 +68,36 @@ table tr td .legal {
     margin: 0;
     font-size: 12px;
 }
+
+.booking-section {
+    text-align: center;
+    margin-top: 50px;
+    padding: 40px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+}
+
+.booking-section h2 {
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.booking-section p {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.booking-btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-size: 18px;
+    transition: background-color 0.3s;
+}
+
+.booking-btn:hover {
+    background-color: #0056b3;
+}

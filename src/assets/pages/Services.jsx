@@ -1,4 +1,5 @@
 import '../../styles/Services.css'
+import { Link } from 'react-router-dom'
 
 export default function Services() {
     return <div className='container servicios-page'>
@@ -151,6 +152,11 @@ export default function Services() {
                     </table>
                 </div>
             </div>
+        </div>
+        <div className="booking-section">
+            <h2>¿Listo para tu próximo look?</h2>
+            <p>Reserva tu cita ahora y déjanos cuidar de tu cabello.</p>
+            <Link to="/Booking" className="booking-btn">Reservar Cita</Link>
         </div>
     </div>
 
