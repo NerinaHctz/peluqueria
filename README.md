@@ -1,59 +1,82 @@
-# Peluquería - Sistema de Gestión de Citas
+# Peluquería - Front + Backend de citas
 
-Aplicación web para una peluquería con sistema de reservas de citas integrado con n8n.
+Proyecto de peluquería con:
 
-## Características
+- Frontend en React (Vite)
+- Backend sencillo en Node.js (http nativo)
+- Calendario de disponibilidad y gestión de citas
+- Envío de confirmación por email con enlace para añadir la cita a Google Calendar
 
-- Página de servicios con precios
-- Galería de trabajos
-- Sistema de reservas de citas
-- Integración con n8n para backend de citas
-
-## Configuración del Backend con n8n
-
-Para el sistema de citas, necesitas configurar un workflow en n8n:
-
-1. **Instalar n8n**: Si no tienes n8n instalado, puedes instalarlo con Docker:
-   ```bash
-   docker run -it --rm --name n8n -p 5678:5678 -v ~/.n8n:/home/node/.n8n n8nio/n8n
-   ```
-
-2. **Crear un workflow**:
-   - Agrega un nodo "Webhook" como trigger
-   - Configura el método HTTP como POST
-   - El webhook recibirá los datos de la cita en formato JSON con campos: name, email, phone, service, date, time, notes
-
-3. **Procesar los datos**:
-   - Conecta el webhook a nodos para guardar en base de datos (ej: MySQL, PostgreSQL)
-   - Agrega envío de email de confirmación usando nodos de email
-   - Opcionalmente, integra con calendario (Google Calendar, etc.)
-
-4. **Configurar la URL del webhook**:
-   - Crea un archivo `.env` en la raíz del proyecto
-   - Agrega: `VITE_N8N_WEBHOOK_URL=https://tu-n8n-instance.com/webhook/tu-webhook-id`
-
-## Instalación y Ejecución
+## 1) Instalación
 
 ```bash
 npm install
+```
+
+## 2) Ejecutar frontend y backend
+
+En una terminal (frontend):
+
+```bash
 npm run dev
 ```
 
-## Estructura del Proyecto
+En otra terminal (backend):
 
-- `src/assets/pages/`: Páginas principales (Home, Services, Booking, etc.)
-- `src/assets/components/`: Componentes reutilizables (Header, Footer)
-- `src/styles/`: Estilos CSS para cada página
+```bash
+npm run server
+```
 
-Currently, two official plugins are available:
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:4000`
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 3) Variables de entorno
 
-## React Compiler
+### Frontend (`.env`)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+VITE_API_URL=http://localhost:4000
+```
 
-## Expanding the ESLint configuration
+### Backend (opcional, para enviar email real)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Si no configuras Resend, la cita se guarda igual y el backend devuelve un fallback mailto.
+
+```bash
+PORT=4000
+FRONTEND_URL=http://localhost:5173
+
+RESEND_API_KEY=re_xxxxxxxxxxxxx
+MAIL_FROM="Peluquería <onboarding@resend.dev>"
+```
+
+## 4) Funcionalidades implementadas
+
+### Frontend (`/Booking`)
+
+- Calendario mensual de citas
+- Visualización de citas por día
+- Horas disponibles dinámicas
+- Horario base configurable de 10:00 a 19:00 con intervalos de 30 minutos
+- Formulario de reserva
+- Panel para bloquear/desbloquear horas
+- Eliminación de citas del día
+
+### Backend (`server/`)
+
+- `GET /api/availability?date=YYYY-MM-DD` → horas disponibles
+- `GET /api/calendar?from=YYYY-MM-DD&to=YYYY-MM-DD` → citas y bloqueos
+- `POST /api/appointments` → crea cita, genera enlace Google Calendar y archivo `.ics`, y envía email
+- `PATCH /api/availability/:date` → bloquear/desbloquear una hora
+- `DELETE /api/appointments/:id` → elimina cita
+
+Persistencia sencilla en `server/data/store.json`.
+
+## 5) Flujo de confirmación de calendario
+
+Cuando creas una cita:
+
+1. Se guarda en el backend.
+2. Se genera un enlace de Google Calendar.
+3. Se intenta enviar email automático mediante Resend (si está configurado).
+4. El cliente puede añadir la cita a Google Calendar desde el enlace generado.
