@@ -1,4 +1,22 @@
 {
-  "appointments": [],
-  "blockedSlots": {}
+  "appointments": [
+    {
+      "id": "71bb990d-514d-4072-a1d2-c9f4cac8473c",
+      "name": "Nerina Castillo Gómez",
+      "email": "nerina.cgomez@gmail.com",
+      "phone": "665876551",
+      "service": "Corte",
+      "date": "2026-04-10",
+      "time": "14:30",
+      "notes": "",
+      "createdAt": "2026-04-11T12:23:21.769Z"
+    }
+  ],
+  "blockedSlots": {
+    "2026-04-11": [
+      "10:00",
+      "12:30",
+      "13:00"
+    ]
+  }
 }
