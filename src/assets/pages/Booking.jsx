@@ -3,6 +3,13 @@ import '../../styles/Booking.css'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4000'
 const SERVICES = ['Corte', 'Color', 'Peinado', 'Mechas', 'Tratamiento']
+const TIME_OPTIONS = Array.from({ length: 19 }, (_, index) => {
+  const totalMinutes = 10 * 60 + index * 30
+  const hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0')
+  const minutes = String(totalMinutes % 60).padStart(2, '0')
+  return `${hours}:${minutes}`
+})
+
 
 function formatDate(date) {
   return date.toISOString().slice(0, 10)
@@ -33,7 +40,7 @@ export default function Booking() {
   const [selectedDate, setSelectedDate] = useState(formatDate(new Date()))
   const [slots, setSlots] = useState([])
   const [appointments, setAppointments] = useState([])
-  const [blockedSlot, setBlockedSlot] = useState('09:00')
+  const [blockedSlot, setBlockedSlot] = useState('10:00')
   const [message, setMessage] = useState('')
 
   const [form, setForm] = useState({
@@ -232,7 +239,13 @@ export default function Booking() {
       <section className="admin-card">
         <h3>Panel rápido (modificar disponibilidad)</h3>
         <div className="admin-actions">
-          <input value={blockedSlot} onChange={(e) => setBlockedSlot(e.target.value)} placeholder="HH:mm" />
+          <select value={blockedSlot} onChange={(e) => setBlockedSlot(e.target.value)}>
+            {TIME_OPTIONS.map((slot) => (
+              <option key={slot} value={slot}>
+                {slot}
+              </option>
+            ))}
+          </select>
           <button onClick={() => updateAvailability('block')}>Bloquear hora</button>
           <button onClick={() => updateAvailability('unblock')}>Desbloquear hora</button>
         </div>

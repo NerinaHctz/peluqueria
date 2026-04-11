@@ -4,17 +4,12 @@ import path from 'node:path'
 const DATA_DIR = path.resolve('server/data')
 const STORE_FILE = path.join(DATA_DIR, 'store.json')
 
-const DEFAULT_SLOTS = [
-  '09:00',
-  '10:00',
-  '11:00',
-  '12:00',
-  '13:00',
-  '16:00',
-  '17:00',
-  '18:00',
-  '19:00',
-]
+const DEFAULT_SLOTS = Array.from({ length: 19 }, (_, index) => {
+  const totalMinutes = 10 * 60 + index * 30
+  const hours = String(Math.floor(totalMinutes / 60)).padStart(2, '0')
+  const minutes = String(totalMinutes % 60).padStart(2, '0')
+  return `${hours}:${minutes}`
+})
 
 const DEFAULT_STORE = {
   appointments: [],

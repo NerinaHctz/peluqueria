@@ -57,6 +57,7 @@ MAIL_FROM="Peluquería <onboarding@resend.dev>"
 - Calendario mensual de citas
 - Visualización de citas por día
 - Horas disponibles dinámicas
+- Horario base configurable de 10:00 a 19:00 con intervalos de 30 minutos
 - Formulario de reserva
 - Panel para bloquear/desbloquear horas
 - Eliminación de citas del día
